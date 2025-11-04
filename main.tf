@@ -12,6 +12,14 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket         = "kaipovkairat-terraform-state"
+    key            = "backend/terraform.tfstate"
+    region         = "eu-west-1"
+  }
+}
+
 resource "aws_dynamodb_table" "visitor_counter" {
   name         = "visitor-counter"
   billing_mode = "PAY_PER_REQUEST"
